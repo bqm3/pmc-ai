@@ -299,7 +299,7 @@ def generate_sql(question, sql_query):
 
     return sql_query
 
-@app.route('/process', methods=['POST'])
+@app.route('/api/v1/process', methods=['POST'])
 def process_question_route():
     # Nhận câu hỏi từ client
     question = request.json.get('question')
