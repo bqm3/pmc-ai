@@ -1,0 +1,3 @@
+flask
+pymysql  # Nếu bạn dùng MySQL
+openai  # Nếu sử dụng API OpenAI
