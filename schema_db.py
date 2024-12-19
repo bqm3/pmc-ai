@@ -248,7 +248,7 @@ schema_info = {
             {"name": "updatedAt", "type": "TIMESTAMP", "description": "Thời gian cập nhật"}
         ]
     },
-    "tb_checklistchitiet                                                                                 ": {
+    "tb_checklistchitiet": {
         "description": "Thông tin về ca thực hiện checklist",
         "columns": [
             {"name": "ID_Checklistchitiet", "type": "INTEGER", "description": "Mã định danh checklist chi tiết"},
@@ -269,7 +269,7 @@ schema_info = {
             {"name": "updatedAt", "type": "TIMESTAMP", "description": "Thời gian cập nhật"}
         ]
     },
-     "tb_checklistchitietdone                                                                                 ": {
+     "tb_checklistchitietdone": {
         "description": "Thông tin về ca thực hiện checklist",
         "columns": [
             {"name": "ID_Checklistchitietdone", "type": "INTEGER", "description": "Mã định danh checklist chi tiết"},

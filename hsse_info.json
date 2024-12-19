@@ -1,0 +1,237 @@
+{
+    "HSSE": {
+        "description": "Thông tin về chi nhánh",
+        "column": [
+            {
+                "name": "ID",
+                "type": "INTEGER",
+                "description": "Mã định danh chính của bảng HSSE"
+            },
+            {
+                "name": "Ten_du_an",
+                "type": "VARCHAR(100)",
+                "description": "Tên dự án nhập liệu HSSE"
+            },
+            {
+                "name": "Ngay_ghi_nhan",
+                "type": "VARCHAR(20)",
+                "description": "Ngày ghi nhận thông tin nhập liệu"
+            },
+            {
+                "name": "Nguoi_tao",
+                "type": "VARCHAR(100)",
+                "description": "Người tạo dữ liệu nhập liệu HSSE"
+            },
+            {
+                "name": "createdAt",
+                "type": "DATE",
+                "description": "Thời điểm tạo bản ghi"
+            },
+            {
+                "name": "updatedAt",
+                "type": "DATE",
+                "description": "Thời điểm cập nhật bản ghi"
+            },
+            {
+                "name": "Dien_cu_dan",
+                "type": "DOUBLE",
+                "description": "Điện tiêu thụ của cư dân"
+            },
+            {
+                "name": "Dien_cdt",
+                "type": "DOUBLE",
+                "description": "Điện tiêu thụ của chủ đầu tư"
+            },
+            {
+                "name": "Nuoc_cu_dan",
+                "type": "DOUBLE",
+                "description": "Nước tiêu thụ của cư dân"
+            },
+            {
+                "name": "Nuoc_cdt",
+                "type": "DOUBLE",
+                "description": "Nước tiêu thụ của chủ đầu tư"
+            },
+            {
+                "name": "Xa_thai",
+                "type": "DOUBLE",
+                "description": "Lượng xả thải"
+            },
+            {
+                "name": "Rac_sh",
+                "type": "DOUBLE",
+                "description": "Rác sinh hoạt"
+            },
+            {
+                "name": "Muoi_dp",
+                "type": "DOUBLE",
+                "description": "Lượng muối điện phân"
+            },
+            {
+                "name": "PAC",
+                "type": "DOUBLE",
+                "description": "Hóa chất PAC dùng trong xử lý nước"
+            },
+            {
+                "name": "NaHSO3",
+                "type": "DOUBLE",
+                "description": "Hóa chất NaHSO3 dùng trong xử lý nước"
+            },
+            {
+                "name": "NaOH",
+                "type": "DOUBLE",
+                "description": "Hóa chất NaOH dùng trong xử lý nước"
+            },
+            {
+                "name": "Mat_rd",
+                "type": "DOUBLE",
+                "description": "Lượng vật liệu làm sạch"
+            },
+            {
+                "name": "Polymer_Anion",
+                "type": "DOUBLE",
+                "description": "Lượng Polymer Anion"
+            },
+            {
+                "name": "Chlorine_bot",
+                "type": "DOUBLE",
+                "description": "Chlorine ở dạng bột"
+            },
+            {
+                "name": "Chlorine_vien",
+                "type": "DOUBLE",
+                "description": "Chlorine ở dạng viên"
+            },
+            {
+                "name": "Methanol",
+                "type": "DOUBLE",
+                "description": "Lượng Methanol"
+            },
+            {
+                "name": "Dau_may",
+                "type": "DOUBLE",
+                "description": "Lượng dầu máy"
+            },
+            {
+                "name": "Tui_rac240",
+                "type": "DOUBLE",
+                "description": "Số lượng túi rác 240 lít"
+            },
+            {
+                "name": "Tui_rac120",
+                "type": "DOUBLE",
+                "description": "Số lượng túi rác 120 lít"
+            },
+            {
+                "name": "Tui_rac20",
+                "type": "DOUBLE",
+                "description": "Số lượng túi rác 20 lít"
+            },
+            {
+                "name": "Tui_rac10",
+                "type": "DOUBLE",
+                "description": "Số lượng túi rác 10 lít"
+            },
+            {
+                "name": "Tui_rac5",
+                "type": "DOUBLE",
+                "description": "Số lượng túi rác 5 lít"
+            },
+            {
+                "name": "giayvs_235",
+                "type": "DOUBLE",
+                "description": "Giấy vệ sinh 235mm"
+            },
+            {
+                "name": "giaivs_120",
+                "type": "DOUBLE",
+                "description": "Giấy vệ sinh 120mm"
+            },
+            {
+                "name": "giay_lau_tay",
+                "type": "DOUBLE",
+                "description": "Giấy lau tay"
+            },
+            {
+                "name": "hoa_chat",
+                "type": "DOUBLE",
+                "description": "Lượng hóa chất"
+            },
+            {
+                "name": "nuoc_rua_tay",
+                "type": "DOUBLE",
+                "description": "Lượng nước rửa tay"
+            },
+            {
+                "name": "nhiet_do",
+                "type": "DOUBLE",
+                "description": "Nhiệt độ đo được"
+            },
+            {
+                "name": "nuoc_bu",
+                "type": "DOUBLE",
+                "description": "Lượng nước bổ sung"
+            },
+            {
+                "name": "clo",
+                "type": "DOUBLE",
+                "description": "Lượng clo"
+            },
+            {
+                "name": "PH",
+                "type": "DOUBLE",
+                "description": "Chỉ số pH"
+            },
+            {
+                "name": "Poolblock",
+                "type": "DOUBLE",
+                "description": "Lượng Poolblock"
+            },
+            {
+                "name": "trat_thai",
+                "type": "DOUBLE",
+                "description": "Lượng chất thải"
+            },
+            {
+                "name": "Email",
+                "type": "VARCHAR(255)",
+                "description": "Email liên hệ"
+            },
+            {
+                "name": "pHMINUS",
+                "type": "DOUBLE",
+                "description": "Lượng pH MINUS"
+            },
+            {
+                "name": "axit",
+                "type": "DOUBLE",
+                "description": "Lượng axit sử dụng"
+            },
+            {
+                "name": "PN180",
+                "type": "DOUBLE",
+                "description": "Lượng PN180"
+            },
+            {
+                "name": "modifiedBy",
+                "type": "VARCHAR(255)",
+                "description": "Người sửa đổi cuối cùng"
+            },
+            {
+                "name": "chiSoCO2",
+                "type": "DOUBLE",
+                "description": "Chỉ số CO2 đo được"
+            },
+            {
+                "name": "clorin",
+                "type": "DOUBLE",
+                "description": "Lượng clorin"
+            },
+            {
+                "name": "NaOCL",
+                "type": "DOUBLE",
+                "description": "Lượng NaOCL"
+            }
+        ]
+    }
+}

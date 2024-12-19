@@ -1,44 +1,4 @@
 {
-    "ent_checklistreplace": {
-        "description": "Thông tin về checklist thay thế",
-        "columns": [
-            {
-                "name": "ID_ChecklistReplace",
-                "type": "INTEGER",
-                "description": "Mã định danh của checklist thay thế"
-            },
-            {
-                "name": "ID_Checklist",
-                "type": "INTEGER",
-                "description": "Mã định danh của checklist"
-            },
-            {
-                "name": "MotaLoi",
-                "type": "TEXT",
-                "description": "Mô tả lỗi"
-            },
-            {
-                "name": "Songay",
-                "type": "INTEGER",
-                "description": "Số ngày"
-            },
-            {
-                "name": "Solan",
-                "type": "INTEGER",
-                "description": "Số lần"
-            },
-            {
-                "name": "Ngaybatdau",
-                "type": "DATE",
-                "description": "Ngày bắt đầu"
-            },
-            {
-                "name": "isDelete",
-                "type": "INTEGER",
-                "description": "Trạng thái xóa( 0 là hiển thị, 1 là xóa)"
-            }
-        ]
-    },
     "ent_chinhanh": {
         "description": "Thông tin về chi nhánh",
         "columns": [
@@ -854,7 +814,7 @@
             }
         ]
     },
-    "tb_checklistchitiet                                                                                 ": {
+    "tb_checklistchitiet": {
         "description": "Thông tin về ca thực hiện checklist",
         "columns": [
             {
@@ -939,7 +899,7 @@
             }
         ]
     },
-    "tb_checklistchitietdone                                                                                 ": {
+    "tb_checklistchitietdone": {
         "description": "Thông tin về ca thực hiện checklist",
         "columns": [
             {

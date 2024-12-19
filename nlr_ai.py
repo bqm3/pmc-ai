@@ -30,7 +30,7 @@ logging.basicConfig(
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Path to JSON schema file
-SCHEMA_JSON_PATH = "schema_info.json"
+SCHEMA_JSON_PATH = "hsse_info.json"
 
 # Function to read schema from JSON file
 def load_schema():
@@ -72,24 +72,28 @@ def ask_gpt(question):
     schema_text = json.dumps(schema_info, ensure_ascii=False, indent=2)
 
     # Define the 5 khối
-    khối_options = ['Khối kỹ thuật', 'Khối bảo vệ', 'Khối làm sạch', 'Khối dịch vụ', 'Khối F&B']
+    # khối_options = ['Khối kỹ thuật', 'Khối bảo vệ', 'Khối làm sạch', 'Khối dịch vụ', 'Khối F&B']
 
-    # Check for specific khối in the question
-    khối_mentioned = [k for k in khối_options if k.lower() in question.lower()]
+    # # Check for specific khối in the question
+    # khối_mentioned = [k for k in khối_options if k.lower() in question.lower()]
 
-    # If no specific khối is mentioned, use all 5 by default
-    if not khối_mentioned:
-        khối_mentioned = khối_options
+    # # If no specific khối is mentioned, use all 5 by default
+    # if not khối_mentioned:
+    #     khối_mentioned = khối_options
 
     # Create the dynamic prompt with user's question and filtered khối
     prompt = (
         f"Bạn là trợ lý AI chuyên tạo truy vấn SQL từ câu hỏi người dùng. "
         f"Dưới đây là thông tin về cơ sở dữ liệu của tôi:\n{schema_text}\n\n"
-        f"Vui lòng chuyển câu hỏi sau thành truy vấn SQL. "
-        f"Lưu ý: "
-        f"- Các khối có thể xuất hiện trong câu hỏi là: {', '.join(khối_mentioned)}.\n"
-        f"- Bảng 'ent_tile' chứa các cột: 'Khoikythuat' : 'Khối kỹ thuật', 'Khoibaove': 'Khối bảo vệ', 'Khoilamsach': 'Khối làm sạch', 'Khoidichvu': 'Khối dịch vụ', 'KhoiFB': 'Khối F&B'. "
-        f"- Khi lọc theo khối, hãy sử dụng 'LIKE' thay vì '=' và thêm ký tự '%' trước và sau giá trị tìm kiếm. "
+        # f"Vui lòng chuyển câu hỏi sau thành truy vấn SQL. "
+        # f"Lưu ý: "
+        # f"- Các câu hỏi không cần so sánh các khối thì trả lời như bình thường hoặc có thể lấy dữ liệu từ bảng khác"
+        # f"- Các khối có thể xuất hiện trong câu hỏi là: {', '.join(khối_mentioned)}.\n"
+        # f"- Bảng 'ent_tile' chứa các cột: 'Khoikythuat' : 'Khối kỹ thuật', 'Khoibaove': 'Khối bảo vệ', 'Khoilamsach': 'Khối làm sạch', 'Khoidichvu': 'Khối dịch vụ', 'KhoiFB': 'Khối F&B'. "
+        # f"- Khi lọc theo khối, hãy sử dụng 'LIKE' thay vì '=' và thêm ký tự '%' trước và sau giá trị tìm kiếm. "
+         f"Lưu ý:\n"
+        f"- Khi người dùng hỏi có từ 'dự án', hãy sử dụng 'LIKE' để tìm kiếm Ten_du_an thay vì '='. "
+        f"- Thêm ký tự '%' trước và sau giá trị tìm kiếm trong 'LIKE'.\n"
         f"Câu hỏi: {question}\n"
     )
 
@@ -105,10 +109,7 @@ def ask_gpt(question):
 
 # Function to process question
 def process_question(question):
-    your_name = "Quang Minh"  # Tên của bạn
-    your_position = "Software Developer"  # Chức vụ của bạn
-    your_contact_info = "hanoipmc57@gmail.com"  # Email của bạn
-
+   
     sql_response = ask_gpt(question)
     sql_query = extract_sql_from_response(sql_response)
 
@@ -139,13 +140,9 @@ def process_question(question):
                     {
                         "role": "user",
                         "content": (
-                            f"Tôi vừa thực hiện một truy vấn SQL với câu hỏi: '{question.strip()}' "
+                            f"Tôi vừa thực hiện một câu hỏi: '{question.strip()}' "
                             f"và kết quả nhận được là:\n{formatted_result}\n\n"
                             f"Hãy viết một câu trả lời hoàn chỉnh, lịch sự.\n\n"
-                            f"Thông tin liên hệ:\n"
-                            f"Tên: {your_name}\n"
-                            f"Chức vụ: {your_position}\n"
-                            f"Email: {your_contact_info}\n"
                         )
                     }
                 ]
@@ -161,12 +158,8 @@ def process_question(question):
                 {
                     "role": "user",
                     "content": (
-                        f"Tôi vừa thực hiện một truy vấn SQL với câu hỏi: '{question.strip()}' "
-                        f"nhưng xảy ra lỗi: '{str(e)}'. Hãy viết một câu trả lời phù hợp để thông báo cho người dùng, lịch sự và dễ hiểu.\n\n"
-                        f"Thông tin liên hệ:\n"
-                        f"Tên: {your_name}\n"
-                        f"Chức vụ: {your_position}\n"
-                        f"Email: {your_contact_info}\n"
+                        f"Tôi vừa thực hiện một truy vấn với câu hỏi: '{question.strip()}' "
+                        f"Hãy viết một câu trả lời phù hợp để thông báo cho người dùng, lịch sự và dễ hiểu.\n\n"
                     )
                 }
             ]
