@@ -71,29 +71,19 @@ def ask_gpt(question):
     # Convert schema information to JSON string
     schema_text = json.dumps(schema_info, ensure_ascii=False, indent=2)
 
-    # Define the 5 khối
-    # khối_options = ['Khối kỹ thuật', 'Khối bảo vệ', 'Khối làm sạch', 'Khối dịch vụ', 'Khối F&B']
-
-    # # Check for specific khối in the question
-    # khối_mentioned = [k for k in khối_options if k.lower() in question.lower()]
-
-    # # If no specific khối is mentioned, use all 5 by default
-    # if not khối_mentioned:
-    #     khối_mentioned = khối_options
-
     # Create the dynamic prompt with user's question and filtered khối
     prompt = (
         f"Bạn là trợ lý AI chuyên tạo truy vấn SQL từ câu hỏi người dùng. "
         f"Dưới đây là thông tin về cơ sở dữ liệu của tôi:\n{schema_text}\n\n"
-        # f"Vui lòng chuyển câu hỏi sau thành truy vấn SQL. "
-        # f"Lưu ý: "
-        # f"- Các câu hỏi không cần so sánh các khối thì trả lời như bình thường hoặc có thể lấy dữ liệu từ bảng khác"
-        # f"- Các khối có thể xuất hiện trong câu hỏi là: {', '.join(khối_mentioned)}.\n"
-        # f"- Bảng 'ent_tile' chứa các cột: 'Khoikythuat' : 'Khối kỹ thuật', 'Khoibaove': 'Khối bảo vệ', 'Khoilamsach': 'Khối làm sạch', 'Khoidichvu': 'Khối dịch vụ', 'KhoiFB': 'Khối F&B'. "
-        # f"- Khi lọc theo khối, hãy sử dụng 'LIKE' thay vì '=' và thêm ký tự '%' trước và sau giá trị tìm kiếm. "
+      
          f"Lưu ý:\n"
         f"- Khi người dùng hỏi có từ 'dự án', hãy sử dụng 'LIKE' để tìm kiếm Ten_du_an thay vì '='. "
         f"- Thêm ký tự '%' trước và sau giá trị tìm kiếm trong 'LIKE'.\n"
+         f"- Cột `Ngay_ghi_nhan` có định dạng `YYYY-MM-DD`.\n"
+          f"- Nếu người dùng chỉ hỏi về **tháng**, sử dụng `MONTH(Ngay_ghi_nhan)` để lọc.\n"
+    f"- Nếu người dùng hỏi về **năm**, sử dụng `YEAR(Ngay_ghi_nhan)`.\n"
+    f"- Nếu người dùng hỏi về **ngày cụ thể**, so sánh trực tiếp `Ngay_ghi_nhan = 'YYYY-MM-DD'`.\n"
+    
         f"Câu hỏi: {question}\n"
     )
 
@@ -147,9 +137,12 @@ def process_question(question):
                     }
                 ]
             )
-            return response['choices'][0]['message']['content'].strip()
+            return response['choices'][0]['message']['content'].strip().replace(
+                "Chân thành cảm ơn và mong nhận được phản hồi từ quý vị! Trân trọng, [Your Name] [Your Position]",
+                "Chân thành cảm ơn và mong nhận được phản hồi từ quý vị! Trân trọng, Phòng Số Hóa"
+            )
         else:
-            return "Không có dữ liệu phù hợp."
+            return "Xin hãy hỏi kỹ hơn."
     except Exception as e:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
@@ -164,7 +157,10 @@ def process_question(question):
                 }
             ]
         )
-        return response['choices'][0]['message']['content'].strip()
+        return response['choices'][0]['message']['content'].strip().replace(
+            "Chân thành cảm ơn và mong nhận được phản hồi từ quý vị! Trân trọng, [Your Name] [Your Position]",
+            "Chân thành cảm ơn và mong nhận được phản hồi từ quý vị! Trân trọng, Phòng Số Hóa"
+        )
 
 @app.route('/api/v1/process', methods=['POST'])
 def process_question_route():

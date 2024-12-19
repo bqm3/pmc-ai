@@ -14,8 +14,8 @@
             },
             {
                 "name": "Ngay_ghi_nhan",
-                "type": "VARCHAR(20)",
-                "description": "Ngày ghi nhận thông tin nhập liệu"
+                "type": "DATE",
+                "description": "Ngày ghi nhận thông tin nhập liệu. Định dang (YYYY-MM-DD)"
             },
             {
                 "name": "Nguoi_tao",
